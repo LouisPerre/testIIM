@@ -21,6 +21,10 @@ export const exercice1 = (filePath) => {
         }
     }
 
+    if (resultArray.length === 0) {
+        throw new Error("Aucun hôtels disponible")
+    }
+
     // Retourner le tableau résultant
     return resultArray;
 }

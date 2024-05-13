@@ -16,7 +16,11 @@ export const exercice3 = (hotelsInput, hotelName) => {
         if (hotelsJson.hasOwnProperty(key)) {
             const hotel = hotelsJson[key].find(h => h.name === hotelName)
             if (hotel) {
-                return Object.values(hotel.pictures)
+                if (hotel.pictures && Object.keys(hotel.pictures).length > 0) {
+                    return Object.values(hotel.pictures)
+                } else {
+                    return "Aucune photo pour cet hôtel"
+                }
             }
         }
     }

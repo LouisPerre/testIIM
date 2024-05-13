@@ -24,6 +24,11 @@ describe('exercice3', () => {
                     "photo2": "photoB2.png"
                 }
             }
+        ],
+        "hotel3": [
+            {
+                "name": "Hotel C",
+            }
         ]
     };
 
@@ -43,11 +48,16 @@ describe('exercice3', () => {
     });
 
     it('should return an empty array if no matching hotel is found', () => {
-        const result = exercice3(sampleJson, "Hotel C");
+        const result = exercice3(sampleJson, "Hotel D");
         expect(result).toHaveLength(0);
     });
 
     it('should throw an error if the input is neither a string nor an object', () => {
         expect(() => exercice3(123, "Hotel A")).toThrow("Mauvais type");
+    });
+
+    it('should return "Aucune photo pour cet hôtel" if no pictures are available', () => {
+        const result = exercice3(sampleJson, "Hotel C");
+        expect(result).toBe("Aucune photo pour cet hôtel");
     });
 });

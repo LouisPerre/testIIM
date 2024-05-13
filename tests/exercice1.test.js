@@ -13,6 +13,7 @@ describe('exercice1', () => {
         reservation2: "bbbbbbbbb",
         reservation3: "ccccccccccc"
     });
+    const emptyJsonContent = JSON.stringify({})
 
     // Avant chaque test, readFileSync doit retourner
     beforeEach(() => {
@@ -46,5 +47,14 @@ describe('exercice1', () => {
             expect(entry).toHaveProperty('key');
             expect(entry).toHaveProperty('value');
         });
+    });
+
+    // Test pour vérifier que l'erreur est levée si le JSON est vide
+    it('devrait lever une erreur si aucun élément n\'est présent', () => {
+        // Simuler la lecture d'un JSON vide
+        fs.readFileSync.mockReturnValue(emptyJsonContent);
+
+        // Vérifier que la fonction lance une erreur si le tableau est vide
+        expect(() => exercice1(fakeFilePath)).toThrow("Aucun hôtels disponible");
     });
 });
