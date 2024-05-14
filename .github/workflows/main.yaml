@@ -31,7 +31,9 @@ jobs:
         with:
           version: 'latest'
           google-auth-token: ${{ secrets.svcaccount }}
-          project-id: galvanized-math-423308-t4
+          service_account_key: ${{ secrets.svcaccount }}
+          project_id: galvanized-math-423308-t4
+          export_default_credentials: true
 
       - name: Déploiement sur GCP
         run: echo "Déploiement en cours..." && gcloud functions deploy node-function --gen2 --runtime=nodejs20 --region=us-east1 --source=. --entry-point=app --trigger-http --update-labels=deployed_by=github
