@@ -1,0 +1,23 @@
+name: GCP Deployment Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  déployer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Réalisations des tests
+        run: echo "Tests en cours && npm run test"
+
+      - name: Authentification auprès de GCP
+        run: echo "Authentification en cours..."
+        uses: actions/setup-google-auth@v2
+        with:
+          google-auth-token: ${{ secrets.svcaccount }}
+          project-id: galvanized-math-423308-t4
+
+      - name: Déploiement sur GCP
+        run: echo "Déploiement en cours..." && gcloud functions deploy node-function --gen2 --runtime=nodejs20 --region=us-east1 --source=. --entry-point=app --trigger-http 
