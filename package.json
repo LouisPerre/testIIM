@@ -1,24 +1,11 @@
 {
-  "name": "testweek",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@babel/preset-env": "^7.24.5",
     "jest": "^29.7.0"
   },
+  "scripts": {
+    "test": "jest --watchAll --coverage --verbose --silent --runInBand"
+  },
   "jest": {
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
-    "testMatch": [
-      "<rootDir>/tests/**/*.test.js"
-    ]
+    "testEnvironment": "node"
   }
 }
