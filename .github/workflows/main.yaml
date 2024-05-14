@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Réalisations des tests
-        run: echo "Tests en cours" && npm run test
+        run: echo "Tests en cours" && npm test
 
       - name: Get commit author
         run: echo "Pipeline triggered by ${{ github.event.commits[0].author.name }}"

@@ -1,4 +1,4 @@
-import { exercice1 } from "./exercice1.js";
+import { exercice1 } from "../src/exercice1.js";
 import * as fs from 'fs'
 
 jest.mock('fs')
