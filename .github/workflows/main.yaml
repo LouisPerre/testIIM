@@ -23,14 +23,23 @@ jobs:
       - name: Réalisations des tests
         run: echo "Tests en cours" && npm test
 
+      - name: Get commit author name
+        run: |
+          AUTHOR_NAME="${{ github.event.commits[0].author.name }}"
+          echo "Original author name: $AUTHOR_NAME"
+          echo "AUTHOR_NAME=$AUTHOR_NAME" >> $GITHUB_ENV
+          PROCESSED_AUTHOR_NAME="${{ env.AUTHOR_NAME,, }}"
+          PROCESSED_AUTHOR_NAME="${PROCESSED_AUTHOR_NAME// /-}"
+          echo "Processed Author Name: $PROCESSED_AUTHOR_NAME
+          echo "PROCESSED_AUTHOR_NAME=$PROCESSED_AUTHOR_NAME" >> $GITHUB_ENV
+
       - name: Get commit author
-        run: echo "Pipeline triggered by ${{ github.event.commits[0].author.name }}"
+        run: echo "Pipeline triggered by $PROCESSED_AUTHOR_NAME"
 
       - name: Authentification auprès de GCP
         uses: google-github-actions/setup-gcloud@v0.2.1
         with:
           version: 'latest'
-          google-auth-token: ${{ secrets.svcaccount }}
           service_account_key: ${{ secrets.svcaccount }}
           project_id: galvanized-math-423308-t4
           export_default_credentials: true
