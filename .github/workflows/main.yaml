@@ -10,10 +10,9 @@ jobs:
 
     steps:
       - name: Réalisations des tests
-        run: echo "Tests en cours && npm run test"
+        run: echo "Tests en cours" && npm run test
 
       - name: Authentification auprès de GCP
-        run: echo "Authentification en cours..."
         uses: actions/setup-google-auth@v2
         with:
           google-auth-token: ${{ secrets.svcaccount }}
