@@ -36,4 +36,4 @@ jobs:
           export_default_credentials: true
 
       - name: Déploiement sur GCP
-        run: echo "Déploiement en cours..." && gcloud functions deploy node-function --gen2 --runtime=nodejs20 --region=us-east1 --source=. --entry-point=app --trigger-http --update-labels=deployed_by=github
+        run: echo "Déploiement en cours..." && gcloud functions deploy node-function --gen2 --runtime=nodejs20 --region=us-east1 --source=. --entry-point=app --trigger-http --update-labels=deployed_by=${{ github.event.commits[0].author.name }}
