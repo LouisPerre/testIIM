@@ -13,7 +13,7 @@ jobs:
         run: actions/checkout@v4
     
       - name: Init node
-        run: actions/setup-nde@v3
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
