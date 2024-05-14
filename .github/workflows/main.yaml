@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Init repository
         uses: actions/checkout@v4
-    
+
       - name: Init node
         uses: actions/setup-node@v3
         with:
@@ -27,7 +27,7 @@ jobs:
         run: echo "Pipeline triggered by ${{ github.event.commits[0].author.name }}"
 
       - name: Authentification auprès de GCP
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v0.2.1
         with:
           version: 'latest'
           google-auth-token: ${{ secrets.svcaccount }}
