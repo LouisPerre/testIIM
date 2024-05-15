@@ -18,7 +18,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm coverage
 
       - name: Réalisations des tests
         run: echo "Tests en cours" && npm test
@@ -40,6 +40,11 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
 
       - name: Authentification auprès de GCP
         uses: google-github-actions/setup-gcloud@v0.2.1
