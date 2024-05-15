@@ -18,10 +18,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm coverage
+        run: npm install
 
       - name: Réalisations des tests
-        run: echo "Tests en cours" && npm test
+        run: echo "Tests en cours" && npm coverage
 
       - name: Get commit author name
         run: |
