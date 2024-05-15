@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.js"
+    "start": "node index.js",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,10 @@
     },
     "testMatch": [
       "<rootDir>/tests/**/*.test.js"
-    ]
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": ["text", "lcov"]
   },
   "dependencies": {
     "@codecov/node-codecov-opentelemetry": "^0.0.8",

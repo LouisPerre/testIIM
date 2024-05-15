@@ -1,3 +1,33 @@
+codecov:
+  token: "0471f197-8230-4bc5-a8f6-4fefdd8ae903"
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: 100%
+
+parsers:
+  jest:
+    enabled: true
+    paths:
+      - "coverage/lcov.info"
+
+ignore:
+  - "node_modules"
+  - "tests"
+
 comment:
-  layout: "diff,flags,tree,betaprofiling"
-  show_critical_paths: true
+  layout: "diff, flags, files"
+
+upload:
+  file: "coverage/lcov.info"
+  retries: 3
+  chunk_size: 10MB
