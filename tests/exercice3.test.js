@@ -53,7 +53,7 @@ describe("exercice3", () => {
     jest.resetAllMocks();
   });
 
-  it("should return an array of photo filenames from a JSON object", async () => {
+  it("testExercice3DisplayPhotoOfTheHotelOK : should return an array of photo filenames from a JSON object", async () => {
     const result = exercice3(sampleJson, "Hotel A");
     expect(result).toEqual({
       status: 200,
@@ -65,7 +65,7 @@ describe("exercice3", () => {
     expect(res.body).toEqual(["photoA1.png", "photoA2.png"]);
   });
 
-  it("should return an array of photo filenames from a JSON file path", async () => {
+  it("testExercice3DisplayPhotoOfTheHotelOK : should return an array of photo filenames from a JSON file path", async () => {
     fs.readFileSync.mockImplementation(() => jsonString);
     const result = exercice3(filePath, "Hotel B");
     expect(result).toEqual({
@@ -78,7 +78,7 @@ describe("exercice3", () => {
     expect(res.body).toEqual(["photoB1.png", "photoB2.png"]);
   });
 
-  it("should return an empty array if no matching hotel is found", async () => {
+  it("testExercice3DisplayPhotoOfTheHotelKO : should return an empty array if no matching hotel is found", async () => {
     const result = exercice3(sampleJson, "Hotel D");
     expect(result).toEqual({ status: 404, data: "Hôtel non trouvé" });
 
@@ -87,7 +87,7 @@ describe("exercice3", () => {
     expect(result).toEqual({ status: 404, data: "Hôtel non trouvé" });
   });
 
-  it("should throw an error if the input is neither a string nor an object", () => {
+  it("testExercice3DisplayPhotoOfTheHotelKO : should throw an error if the input is neither a string nor an object", () => {
     expect(() => exercice3(123, "Hotel A")).toThrow("Mauvais type");
   });
 

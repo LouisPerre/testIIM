@@ -34,7 +34,7 @@ describe("exercice2", () => {
     jest.resetAllMocks();
   });
 
-  it("devrait convertir JSON en tableau d'objets avec les clés et valeurs correctes", async () => {
+  it("testExercice2DisplayListofReservationOK : devrait convertir JSON en tableau d'objets avec les clés et valeurs correctes", async () => {
     const expected = [
       { key: "reservation1", value: "aaaaaaaaaaa" },
       { key: "reservation2", value: "bbbbbbbbb" },
@@ -50,7 +50,7 @@ describe("exercice2", () => {
     expect(res.body).toEqual(expect.arrayContaining(expected));
   });
 
-  it('chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
+  it('testExercice2DisplayListofReservationOK : chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
     const result = exercice2(fakeFilePath);
     result.forEach((entry) => {
       expect(entry).toHaveProperty("key");

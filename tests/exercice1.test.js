@@ -35,7 +35,7 @@ describe("exercice1", () => {
     jest.resetAllMocks();
   });
 
-  it("devrait convertir JSON en tableau d'objets avec les clés et valeurs correctes", async () => {
+  it("testExercice1DisplayListofHotelsOK : devrait convertir JSON en tableau d'objets avec les clés et valeurs correctes", async () => {
     const expected = [
       { key: "reservation1", value: "aaaaaaaaaaa" },
       { key: "reservation2", value: "bbbbbbbbb" },
@@ -51,7 +51,7 @@ describe("exercice1", () => {
     expect(res.body).toEqual(expect.arrayContaining(expected));
   });
 
-  it('chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
+  it('testExercice1DisplayListofHotelsOK : chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
     const result = exercice1(fakeFilePath);
     result.forEach((entry) => {
       expect(entry).toHaveProperty("key");
@@ -59,7 +59,7 @@ describe("exercice1", () => {
     });
   });
 
-  it("devrait lever une erreur si aucun élément n'est présent", async () => {
+  it("testExercice1DisplayListofHotelsKO : devrait lever une erreur si aucun élément n'est présent", async () => {
     fs.readFileSync.mockReturnValue(emptyJsonContent);
     expect(() => exercice1(fakeFilePath)).toThrow("Aucun hôtels disponible");
 

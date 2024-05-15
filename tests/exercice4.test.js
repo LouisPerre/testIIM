@@ -21,7 +21,7 @@ app.get("/exercice4/success", (req, res) => {
 describe("exercice4", () => {
   const fakeFilePath = "/fake/path/to/exercice4.json";
 
-  it("doit lever une erreur si aucune réservation n'est présente", async () => {
+  it("TestExercice4DisplayYourReservation : doit lever une erreur si aucune réservation n'est présente", async () => {
     const jsonData = JSON.stringify({
       hotel1: [],
       hotel2: [],
@@ -40,7 +40,7 @@ describe("exercice4", () => {
     );
   });
 
-  it("ne doit pas renvoyer un tableau vide quand des hôtels sont réservés", async () => {
+  it("TestExercice4DisplayYourReservation : ne doit pas renvoyer un tableau vide quand des hôtels sont réservés", async () => {
     const jsonData = JSON.stringify({
       hotel1: [{ name: "Hotel A", book: "true" }],
       hotel2: [{ name: "Hotel B", book: "true" }],
@@ -55,7 +55,7 @@ describe("exercice4", () => {
     expect(res.body.length).toBeGreaterThan(0);
   });
 
-  it('doit s\'assurer que chaque hôtel renvoyé a une clé `book` à `"true"`', async () => {
+  it('TestExercice4DisplayYourReservation : doit s\'assurer que chaque hôtel renvoyé a une clé `book` à `"true"`', async () => {
     const jsonData = JSON.stringify({
       hotel1: [{ name: "Hotel A", book: "true" }],
       hotel2: [{ name: "Hotel B", book: "true" }],
