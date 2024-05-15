@@ -1,60 +1,70 @@
 import { exercice1 } from "../src/exercice1.js";
-import * as fs from 'fs'
+import * as fs from "fs";
+import request from "supertest";
+import express from "express";
 
-jest.mock('fs')
+jest.mock("fs");
 
-// Bloc qui contient plusieurs test liés
-describe('exercice1', () => {
-    // Faux chemin de fichier pour notre fonction
-    const fakeFilePath = '/fake/path/to/jsonfile.json';
-    // Faux Json content
-    const jsonContent = JSON.stringify({
-        reservation1: "aaaaaaaaaaa",
-        reservation2: "bbbbbbbbb",
-        reservation3: "ccccccccccc"
+// Configurer un serveur Express pour les tests
+const app = express();
+app.use(express.json());
+
+app.get("/exercice1/success", (req, res) => {
+  try {
+    const result = exercice1("/fake/path/to/jsonfile.json");
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
+describe("exercice1", () => {
+  const fakeFilePath = "/fake/path/to/jsonfile.json";
+  const jsonContent = JSON.stringify({
+    reservation1: "aaaaaaaaaaa",
+    reservation2: "bbbbbbbbb",
+    reservation3: "ccccccccccc",
+  });
+  const emptyJsonContent = JSON.stringify({});
+
+  beforeEach(() => {
+    fs.readFileSync.mockReturnValue(jsonContent);
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  it("devrait convertir JSON en tableau d'objets avec les clés et valeurs correctes", async () => {
+    const expected = [
+      { key: "reservation1", value: "aaaaaaaaaaa" },
+      { key: "reservation2", value: "bbbbbbbbb" },
+      { key: "reservation3", value: "ccccccccccc" },
+    ];
+    const result = exercice1(fakeFilePath);
+
+    expect(result).toEqual(expect.arrayContaining(expected));
+    expect(result).toHaveLength(expected.length);
+
+    const res = await request(app).get("/exercice1/success");
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(expect.arrayContaining(expected));
+  });
+
+  it('chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
+    const result = exercice1(fakeFilePath);
+    result.forEach((entry) => {
+      expect(entry).toHaveProperty("key");
+      expect(entry).toHaveProperty("value");
     });
-    const emptyJsonContent = JSON.stringify({})
+  });
 
-    // Avant chaque test, readFileSync doit retourner
-    beforeEach(() => {
-        fs.readFileSync.mockReturnValue(jsonContent);
-    });
+  it("devrait lever une erreur si aucun élément n'est présent", async () => {
+    fs.readFileSync.mockReturnValue(emptyJsonContent);
+    expect(() => exercice1(fakeFilePath)).toThrow("Aucun hôtels disponible");
 
-    // Après chaque test, reset
-    afterEach(() => {
-        jest.resetAllMocks();
-    });
-
-    // Test pour verifier que le JSON est bien convertit en objet
-    it('devrait convertir JSON en tableau d\'objets avec les clés et valeurs correctes', () => {
-        // La valeur attendu
-        const expected = [
-            { key: 'reservation1', value: 'aaaaaaaaaaa' },
-            { key: 'reservation2', value: 'bbbbbbbbb' },
-            { key: 'reservation3', value: 'ccccccccccc' }
-        ];
-        // Recuperation du resultat
-        const result = exercice1(fakeFilePath);
-
-        expect(result).toEqual(expect.arrayContaining(expected));
-        expect(result).toHaveLength(expected.length);
-    });
-
-    // Test pour verifier que l'objet contient bien une cle "key" et une cle "value"
-    it('chaque objet dans le tableau doit contenir les clés "key" et "value"', () => {
-        const result = exercice1(fakeFilePath);
-        result.forEach(entry => {
-            expect(entry).toHaveProperty('key');
-            expect(entry).toHaveProperty('value');
-        });
-    });
-
-    // Test pour vérifier que l'erreur est levée si le JSON est vide
-    it('devrait lever une erreur si aucun élément n\'est présent', () => {
-        // Simuler la lecture d'un JSON vide
-        fs.readFileSync.mockReturnValue(emptyJsonContent);
-
-        // Vérifier que la fonction lance une erreur si le tableau est vide
-        expect(() => exercice1(fakeFilePath)).toThrow("Aucun hôtels disponible");
-    });
+    const res = await request(app).get("/exercice1/success");
+    expect(res.statusCode).toEqual(404);
+    expect(res.body).toHaveProperty("message", "Aucun hôtels disponible");
+  });
 });
