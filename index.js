@@ -40,22 +40,22 @@ app.get('/exercice1', (req, res) => {
 });
 
 app.get('/exercice2', (req, res) => {
-    const result = exercice2('./assets/exercice2.json')
+    const result = exercice2('./assets/JSON/exercice2.json')
     res.status(200).send(result);
 });
 
 app.get('/exercice3', (req, res) => {
-    const result = exercice3('./assets/exercice3.json', 'bbbbbbbbbbbbbbb')
+    const result = exercice3('./assets/JSON/exercice3.json', 'bbbbbbbbbbbbbbb')
     res.status(200).send(result);
 });
 
 app.get('/exercice4', (req, res) => {
-    const result = exercice4('./assets/exercice4.json')
+    const result = exercice4('./assets/JSON/exercice4.json')
     res.status(200).send(result);
 });
 
 app.get('/', (req, res) => {
-    const result = exercice1('./assets/exercice1.json')
+    const result = exercice1('./assets/JSON/exercice1.json')
     res.status(200).send(result);
 });
 
