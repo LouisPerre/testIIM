@@ -36,6 +36,11 @@ jobs:
       - name: Get commit author
         run: echo "Pipeline triggered by $processed_author_name"
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Authentification auprès de GCP
         uses: google-github-actions/setup-gcloud@v0.2.1
         with:
