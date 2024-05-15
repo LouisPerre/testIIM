@@ -17,7 +17,7 @@ provider.register();
 const codecov = new CodeCovOpenTelemetry({
     repositoryToken: "0471f197-8230-4bc5-a8f6-4fefdd8ae903", //from repository settings page on Codecov.
     environment: "production", //or others as appropriate
-    versionIdentifier: "v0.0.1", //semver, commit SHA, etc
+    versionIdentifier: "v0.0.2", //semver, commit SHA, etc
     filters: {
         allowedSpanKinds: [SpanKind.SERVER],
     },
