@@ -21,8 +21,3 @@ ignore:
 
 comment:
   layout: "diff, flags, files"
-
-upload:
-  file: "coverage/lcov.info"
-  retries: 3
-  chunk_size: 10MB
