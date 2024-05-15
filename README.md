@@ -130,3 +130,5 @@ Objectif : évaluer la performance de l'application sous charge.
 - Exécuter et analyser : exécuter les tests de stress et analyser les résultats pour identifier les points de défaillance et optimiser les performances de l'application.
 
 Cette documentation vous aidera à déployer efficacement une application développée en TDD sur GCP à l'aide de GitHub. Adapter les étapes spécifiques aux détails de votre projet pour une meilleure intégration.
+
+![](./assets/IMAGES/6.png)
