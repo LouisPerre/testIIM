@@ -2,7 +2,7 @@ import {calldependance} from "../src/callDependance.js";
 import * as axios from 'axios'
 
 const User = require("../src/classes");
-const url = process.env.URL || "http://localhost:5555";
+const url = "https://us-east1-sacred-vigil-423308-v6.cloudfunctions.net";
 const bearer = process.env.BEARER_TOKEN || ""
 describe('The calldependance response url with name will return a string with the name passed as a query parameter', () => {
     it('should return a string with the name passed as a query parameter', async () => {
