@@ -1,5 +1,6 @@
-const calldependance = require("../src/calldependance");
-const axios = require("axios");
+import {calldependance} from "../src/callDependance.js";
+import * as axios from 'axios'
+
 const User = require("../src/classes");
 const url = process.env.URL || "http://localhost:5555";
 const bearer = process.env.BEARER_TOKEN || ""
