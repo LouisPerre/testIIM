@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll --coverage --verbose --silent --runInBand",
     "start": "node index.js",
     "coverage": "jest --coverage"
   },
@@ -26,7 +26,13 @@
     ],
     "collectCoverage": true,
     "coverageDirectory": "coverage",
-    "coverageReporters": ["text", "lcov"]
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./jest.setup.js"]
+
   },
   "dependencies": {
     "@codecov/node-codecov-opentelemetry": "^0.0.8",
