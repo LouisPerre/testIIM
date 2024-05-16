@@ -40,5 +40,15 @@ app.get('/healt', (req, res) => {
     res.status(200).send("Hello world")
 })
 
+app.get('/callDependance', (req, res) => {
+    const result =
+    res.status(200).send(name)
+})
+
+app.get("/action", (req, res) => {
+    const { name } = req.query;
+    res.status(200).send(`Hello ${name}!`);
+});
+
 export { app };
 
