@@ -31,12 +31,14 @@
       "lcov"
     ],
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["./jest.setup.js"]
-
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
   },
   "dependencies": {
     "@codecov/node-codecov-opentelemetry": "^0.0.8",
     "@google-cloud/storage": "^7.11.0",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "faker-br": "^0.1.0"
   }
 }
