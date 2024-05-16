@@ -1,5 +1,5 @@
 function sayHelloTo(person) {
-    return `Hi, ${person} !`;
+    return `Hi, ${person}!`;
 }
   
 export default sayHelloTo;
