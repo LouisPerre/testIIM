@@ -1,5 +1,5 @@
-const calldependance = require('../src/calldependance');
-const faker = require('faker-br');
+import * as faker from 'faker-br'
+import { calldependance } from "../src/callDependance.js";
 
 let name = "";
 
