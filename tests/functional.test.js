@@ -1,5 +1,5 @@
-const calldependance = require("../src/calldependance");
-const axios = require("axios");
+import {calldependance} from "../src/callDependance.js";
+import * as axios from 'axios'
 const url = process.env.URL || "http://localhost:5555";
 const bearer = process.env.BEARER_TOKEN || ""
 describe('The calldependance response url with name will return a string with the name passed as a query parameter', () => {
